@@ -1,7 +1,7 @@
 { "index": {}}
 { "description": "Statue de Louis XIV", "geo": { "location": { "lat": "45.75773703899206", "lon": "4.83209806182523" } }, "comment": "br" }
 { "index": {}}
-{ "description": "Mairie", "geo": { "location": { "lat": "44.83273026882121", "lon": "-0.5865537159413455" } }, "comment": "tg" }
+{ "description": "Mairie", "geo": { "location": { "lat": "44.83273026882121", "lon": "-0.5865537159413455" } }, "comment": "zel" }
 { "index": {}}
 { "description": "Basilique", "geo": { "location": { "lat": "44.66095300329068", "lon": "-1.1824136488010666" } }, "comment": "tge" }
 { "index": {}}
