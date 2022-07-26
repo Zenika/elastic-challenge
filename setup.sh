@@ -43,7 +43,10 @@ echo "Create init snapshot repository"
 until curl -s -X POST --cacert config/certs/ca/ca.crt -u elastic:${ELASTIC_PASSWORD} -H "Content-Type: application/json" https://es01:9200/_snapshot/init_repository -d '{"type": "fs", "settings": {"location": "/mnt/data/init"}}' | grep -q '{"acknowledged":true}'; do sleep 10; done
 
 echo "Load initial snapshot"
-until curl -s -X POST --cacert config/certs/ca/ca.crt -u elastic:${ELASTIC_PASSWORD} -H "Content-Type: application/json" https://es01:9200/_snapshot/init_repository/test_snapshot/_restore | grep -q '{"accepted":true}'; do sleep 10; done
+until curl -s -X POST --cacert config/certs/ca/ca.crt -u elastic:${ELASTIC_PASSWORD} -H "Content-Type: application/json" https://es01:9200/_snapshot/init_repository/test_snapshot/_restore -d '{"include_global_state": true}' | grep -q '{"accepted":true}'; do sleep 10; done
+
+echo "Disable access to elastic user"
+until curl -s -X POST --cacert config/certs/ca/ca.crt -u secmgr:${SECMGR_PASSWORD} -H "Content-Type: application/json" https://es01:9200/_security/user/elastic/_disable | grep -q '^{ }'; do sleep 10; done
 
 echo
 echo "All done!";
