@@ -16,7 +16,7 @@ Agent Loustic ! Soyez fort, malin, habile !
 
 ## Journal de l'agent Frantic
 
-But : grâce aux différents indices, trouver l'adresse email de votre contact et lui envoyer un message pour lui prouver comme vous êtes fort !
+But : grâce aux différents indices, trouver l'adresse email de votre contact et lui envoyer un message pour lui prouver que vous êtes le meilleur !
 
 ### Pré-requis / démarrage
 
@@ -36,7 +36,7 @@ J'ai réussi à obtenir un _leak_ des données confidentielles de 4STIC. Celles-
 
 D'après mes informations, la prochaine cible serait très proche du centre de Bordeaux, en France.
 
-L'index `targets` contient toutes les cibles potentielles : trouvez le document dont la localisation géographique est la plus proche du centre de Bordeaux (44.84514199825976, -0.5777454276682794), le champ `comment` de ce document contiendra la deuxième partie de mon adresse email.
+L'index `targets` contient toutes les cibles potentielles : trouvez le document dont la localisation géographique est la plus proche du centre de Bordeaux (44.84514199825976, -0.5777454276682794), le champ `comment` de ce document contiendra la deuxième partie de l'adresse email recherchée.
 
 ### Le planificateur
 
@@ -59,4 +59,50 @@ Si vous arrivez à trouver ce membre, il vous suffira de vous connecter à Kiban
 
 A partir d'ici, il faudra que vous vous connectiez avec les login et mot de passe du membre "Planificateur".
 
-Continuer (création d'un snapshot, etc.)
+J'ai réussi à récupérer le snapshot d'un index contenant un historique de toutes les opérations effectuées par `4STIC` dans le cadre de leur plan de grande envergure.
+
+Une fois connecté avec le user du "Planificateur", il vous faudra créer une repository (appelez le `privileged_repository` par exemple) de type Shared FS et pointant sur le répertoire `/mnt/data/privileged`.
+
+Vous trouverez alors dans ce repository un unique snapshot qu'il vous faudra restaurer (**sans le global state!**) pour avoir accès aux données des `operations`. De plus, ce snapshot est associé à des `metadata` qui vous donneront une autre partie de l'adresse email !
+
+Chacune de ces opérations contient les champs suivants :
+
+* `@timestamp` : la date d'exécution de l'opération
+* `type` : le type de l'opération
+* `city` : la ville concernée par l'opération
+* `login`: le login Elastic du membre qui a mené l'opération
+* `successful` : un booléen indiquant si l'opération a été un succès ou pas
+
+Cet index `operations` est basé sur un `index template`, il y en a plusieurs possibles mais un seul a été appliqué. Une fois découvert, vous trouverez une autre partie de l'adresse email dans les `metadata` associées à cet `index template`.
+
+Le chef de la sécurité de `4STIC` est un petit malin doublé d'un blagueur, il a disséminé des indices dans les données mais je ne manque pas de ressource et j'ai réussi à mettre la main sur la liste des indications permettant d'identifier le membre qui va être en charge de la prochaine opération. Rappelez-vous : il s'agit du cerveau de l'organisation, il est crucial d'obtenir cette information !
+
+#### Chaud
+
+Le premier indice ne peut pas être découvert à l'oeil nu, il faut observer les données sous un angle nouveau.
+
+Votre mission sera de :
+
+* Créer un Data View dans Kibana pour être capable d'observer les données de l'index `operations`
+* Toujours dans Kibana, créer une visualisation de type `Heatmap` dont les caractéristiques sont les suivantes :
+  * L'axe des abscisses affiche les `type` d'opérations, classés par ordre alphabétique (attention, il y en a 8 en tout, nous voulons tous les voir !)
+  * L'axe des ordonnées affiche les `city` dans lesquelles se sont déroulées les opérations (idem, il y en 8 !)
+  * La troisième dimension sera le nombre d'opérations : il faudra choisir une échelle de couleur en dégradé, par exemple `Cool` ou `Warm`
+
+Si votre visualisation est bien conçue, vous devriez voir apparaître un chiffre !
+
+#### The best at what he does
+
+Le chiffre que vous avez trouvé correspond en fait à un mois de l'année 2021 ! (1 -> janvier, 12 -> décembre)
+
+Nous savons que le membre sélectionné est celui qui a eu le plus grand pourcentage de succès au cours de ce mois de l'année 2021, nous sommes à deux doigts de le trouver !
+
+Si vous savez utiliser les agrégations de type `bucket_script`, alors vous avez les moyens de sélectionner les opérations du mois concerné et de trouver le login du membre qui a eu le plus pourcentage de succès.
+
+Une fois son login trouvé, il devrait être facile de retrouver son nom complet dans l'index des `membres` (rappelez-vous, nous savons comment les logins sont formés à partir du prénom, du nom et de la date de naissance des `membres` !). Enfin la dernière partie de l'adresse email que nous recomposons depuis le début de cet aventure se trouve dans le `password` de ce membre.
+
+## Fin de l'aventure
+
+Si vous êtes arrivés jusque là, vous êtes en possession de `5` parties d'adresse email qu'il vous suffira de rassembler dans l'ordre d'obtention pour obtenir une adresse email : `<1><2><3><4><5>@zenika.com`.
+
+Envoyez nous un petit message ! TODO : à compléter.
