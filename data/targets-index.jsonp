@@ -1,0 +1,24 @@
+PUT targets
+{
+  "settings": {
+    "number_of_replicas": 0
+  },
+  "mappings": {
+    "properties": {
+      "description": {
+        "type": "text"
+      },
+      "geo": {
+        "type": "object",
+        "properties": {
+          "location": {
+            "type": "geo_point"
+          }
+        }
+      },
+      "comment": {
+        "type": "match_only_text"
+      }
+    }
+  }
+}

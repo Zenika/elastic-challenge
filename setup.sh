@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+FIRST_LAUNCH=0;
+
 if [ x${ELASTIC_PASSWORD} == x ]; then
     echo "Set the ELASTIC_PASSWORD environment variable in the .env file";
     exit 1;
@@ -8,6 +10,7 @@ elif [ x${KIBANA_PASSWORD} == x ]; then
     exit 1;
 fi;
 if [ ! -f config/certs/ca.zip ]; then
+    FIRST_LAUNCH=1;
     echo "Creating CA";
     bin/elasticsearch-certutil ca --silent --pem -out config/certs/ca.zip;
     unzip config/certs/ca.zip -d config/certs;
@@ -36,14 +39,19 @@ chmod 644 config/certs/ca/ca.crt;
 echo "Waiting for Elasticsearch availability";
 until curl -s --cacert config/certs/ca/ca.crt https://es01:9200 | grep -q "missing authentication credentials"; do sleep 30; done;
 
-echo "Setting kibana_system password";
-until curl -s -X POST --cacert config/certs/ca/ca.crt -u elastic:${ELASTIC_PASSWORD} -H "Content-Type: application/json" https://es01:9200/_security/user/kibana_system/_password -d "{\"password\":\"${KIBANA_PASSWORD}\"}" | grep -q "^{}"; do sleep 10; done;
+if [ ${FIRST_LAUNCH} == 1 ]; then
+    echo "Setting kibana_system password";
+    until curl -s -X POST --cacert config/certs/ca/ca.crt -u elastic:${ELASTIC_PASSWORD} -H "Content-Type: application/json" https://es01:9200/_security/user/kibana_system/_password -d "{\"password\":\"${KIBANA_PASSWORD}\"}" | grep -q "^{}"; do sleep 10; done;
 
-echo "Create init snapshot repository"
-until curl -s -X POST --cacert config/certs/ca/ca.crt -u elastic:${ELASTIC_PASSWORD} -H "Content-Type: application/json" https://es01:9200/_snapshot/init_repository -d '{"type": "fs", "settings": {"location": "/mnt/data/init"}}' | grep -q '{"acknowledged":true}'; do sleep 10; done
+    echo "Create init snapshot repository"
+    until curl -s -X POST --cacert config/certs/ca/ca.crt -u elastic:${ELASTIC_PASSWORD} -H "Content-Type: application/json" https://es01:9200/_snapshot/init_repository -d '{"type": "fs", "settings": {"location": "/mnt/data/init"}}' | grep -q '{"acknowledged":true}'; do sleep 10; done
 
-echo "Load initial snapshot"
-until curl -s -X POST --cacert config/certs/ca/ca.crt -u elastic:${ELASTIC_PASSWORD} -H "Content-Type: application/json" https://es01:9200/_snapshot/init_repository/test_snapshot/_restore | grep -q '{"accepted":true}'; do sleep 10; done
+    echo "Load initial snapshot"
+    until curl -s -X POST --cacert config/certs/ca/ca.crt -u elastic:${ELASTIC_PASSWORD} -H "Content-Type: application/json" https://es01:9200/_snapshot/init_repository/test_snapshot/_restore -d '{"include_global_state": true}' | grep -q '{"accepted":true}'; do sleep 10; done
 
+    echo "Disable access to elastic user"
+    until curl -s -X POST --cacert config/certs/ca/ca.crt -u secmgr:${SECMGR_PASSWORD} -H "Content-Type: application/json" https://es01:9200/_security/user/elastic/_disable | grep -q '^{ }'; do sleep 10; done
+
+fi;
 echo
 echo "All done!";

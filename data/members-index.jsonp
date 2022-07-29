@@ -1,0 +1,22 @@
+PUT members
+{
+  "settings": {
+    "number_of_replicas": 0
+  },
+  "mappings": {
+    "properties": {
+      "first_name": {
+        "type": "match_only_text"
+      },
+      "last_name": {
+        "type": "match_only_text"
+      },
+      "city": {
+        "type": "keyword"
+      },
+      "birthday": {
+        "type": "date"
+      }
+    }
+  }
+}
