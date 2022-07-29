@@ -57,5 +57,6 @@ Si vous arrivez à trouver ce membre, il vous suffira de vous connecter à Kiban
 
 ### Les opérations
 
-A partir d'ici, se connecter avec le membre adéquat.
+A partir d'ici, il faudra que vous vous connectiez avec les login et mot de passe du membre "Planificateur".
+
 Continuer (création d'un snapshot, etc.)
