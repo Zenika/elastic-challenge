@@ -85,8 +85,8 @@ Votre mission sera de :
 
 * Créer un Data View dans Kibana pour être capable d'observer les données de l'index `operations`
 * Toujours dans Kibana, créer une visualisation de type `Heatmap` dont les caractéristiques sont les suivantes :
-  * L'axe des abscisses affiche les `type` d'opérations, classés par ordre alphabétique (attention, il y en a 8 en tout, nous voulons tous les voir !)
-  * L'axe des ordonnées affiche les `city` dans lesquelles se sont déroulées les opérations (idem, il y en 8 !)
+  * L'axe des ordonnées affiche les `city` dans lesquelles se sont déroulées les opérations (attention, il y en a 8 en tout, nous voulons tous les voir !)
+  * L'axe des abscisses affiche les `type` d'opérations, classés par ordre alphabétique (idem, il y en 8 !)
   * La troisième dimension sera le nombre d'opérations : il faudra choisir une échelle de couleur en dégradé, par exemple `Cool` ou `Warm`
 
 Si votre visualisation est bien conçue, vous devriez voir apparaître un chiffre !
