@@ -1,0 +1,25 @@
+PUT operations
+{
+  "settings": {
+    "number_of_replicas": 0
+  },
+  "mappings": {
+    "properties": {
+      "@timestamp": {
+        "type": "date"
+      },
+      "type": {
+        "type": "keyword"
+      },
+      "city": {
+        "type": "keyword"
+      },
+      "successful": {
+        "type": "boolean"
+      },
+      "login": {
+        "type": "keyword"
+      }
+    }
+  }
+}

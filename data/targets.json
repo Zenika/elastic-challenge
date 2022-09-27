@@ -1,0 +1,60 @@
+{ "index": {}}
+{ "description": "Statue de Louis XIV", "geo": { "location": { "lat": "45.75773703899206", "lon": "4.83209806182523" } }, "comment": "br" }
+{ "index": {}}
+{ "description": "Mairie", "geo": { "location": { "lat": "44.83273026882121", "lon": "-0.5865537159413455" } }, "comment": "zel" }
+{ "index": {}}
+{ "description": "Basilique", "geo": { "location": { "lat": "44.66095300329068", "lon": "-1.1824136488010666" } }, "comment": "tge" }
+{ "index": {}}
+{ "description": "Centre de la Mer", "geo": { "location": { "lat": "45.93748342572596", "lon": "-0.9567720446824419" } }, "comment": "re" }
+{ "index": {}}
+{ "description": "Cathédrale", "geo": { "location": { "lat": "48.11193656985258", "lon": "-1.6819424994771242" } }, "comment": "tg" }
+{ "index": {}}
+{ "description": "Gîte", "geo": { "location": { "lat": "49.02580041308198", "lon": "-1.5834872974788314" } }, "comment": "az" }
+{ "index": {}}
+{ "description": "Palais", "geo": { "location": { "lat": "51.50274166333839", "lon": "-0.13646006511562464" } }, "comment": "bp" }
+{ "index": {}}
+{ "description": "College", "geo": { "location": { "lat": "53.34478597783777", "lon": "-6.254497350712385" } }, "comment": "cp" }
+{ "index": {}}
+{ "description": "Park", "geo": { "location": { "lat": "57.11111389045543", "lon": "-3.968026094452819" } }, "comment": "tg" }
+{ "index": {}}
+{ "description": "Airport", "geo": { "location": { "lat": "64.13358549623236", "lon": "-21.941712892936316" } }, "comment": "re" }
+{ "index": {}}
+{ "description": "Hospital", "geo": { "location": { "lat": "40.65901584325827", "lon": "-73.91214429184718" } }, "comment": "ho" }
+{ "index": {}}
+{ "description": "Fairy Land", "geo": { "location": { "lat": "37.81135540288761", "lon": "-122.25986113865225" } }, "comment": "fl" }
+{ "index": {}}
+{ "description": "Site archéologique", "geo": { "location": { "lat": "20.219704228111876", "lon": "-87.42941840046198" } }, "comment": "tu" }
+{ "index": {}}
+{ "description": "Incas", "geo": { "location": { "lat": "-13.162117388261514", "lon": "-72.54482342741474" } }, "comment": "mp" }
+{ "index": {}}
+{ "description": "Highest", "geo": { "location": { "lat": "27.9881947785721", "lon": "86.92506065686655" } }, "comment": "me" }
+{ "index": {}}
+{ "description": "Forbidden", "geo": { "location": { "lat": "39.9177853285369", "lon": "116.39754503242496" } }, "comment": "ci" }
+{ "index": {}}
+{ "description": "Skytree", "geo": { "location": { "lat": "35.71001776645262", "lon": "139.8109602911857" } }, "comment": "st" }
+{ "index": {}}
+{ "description": "Tourists", "geo": { "location": { "lat": "-8.420326331557867", "lon": "115.17947826942948" } }, "comment": "dc" }
+{ "index": {}}
+{ "description": "Tower", "geo": { "location": { "lat": "48.85848581295253", "lon": "2.2944274684822163" } }, "comment": "te" }
+{ "index": {}}
+{ "description": "Station", "geo": { "location": { "lat": "53.54967176857376", "lon": "9.957249980767577" } }, "comment": "rp" }
+{ "index": {}}
+{ "description": "Theater", "geo": { "location": { "lat": "55.75994468678335", "lon": "37.61876167504836" } }, "comment": "bo" }
+{ "index": {}}
+{ "description": "Restaurant", "geo": { "location": { "lat": "45.83128895726022", "lon": "1.2607614248819303" } }, "comment": "bb" }
+{ "index": {}}
+{ "description": "Medina", "geo": { "location": { "lat": "33.602700217063735", "lon": "-7.619341015042693" } }, "comment": "md" }
+{ "index": {}}
+{ "description": "Museum", "geo": { "location": { "lat": "-33.90785935762134", "lon": "18.422577746814817" } }, "comment": "mu" }
+{ "index": {}}
+{ "description": "Another tower", "geo": { "location": { "lat": "-34.591945352357904", "lon": "-58.373685476019205" } }, "comment": "tm" }
+{ "index": {}}
+{ "description": "Sport Center", "geo": { "location": { "lat": "45.49660528385774", "lon": "-73.56635752534082" } }, "comment": "cb" }
+{ "index": {}}
+{ "description": "Financial", "geo": { "location": { "lat": "25.2115069959414", "lon": "55.279228247819674" } }, "comment": "difc" }
+{ "index": {}}
+{ "description": "Famous bridge", "geo": { "location": { "lat": "45.43177614365082", "lon": "12.328867729346985" } }, "comment": "pa" }
+{ "index": {}}
+{ "description": "Phare", "geo": { "location": { "lat": "39.07998814019057", "lon": "1.6094168924527774" } }, "comment": "pg" }
+{ "index": {}}
+{ "description": "Garden", "geo": { "location": { "lat": "43.492206845024164", "lon": "-1.4790257404062297" } }, "comment": "jb" }
